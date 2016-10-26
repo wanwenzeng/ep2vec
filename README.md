@@ -7,7 +7,8 @@
 * Generate training pairs from TargetFinder
 * Use Paragraph Vector to train enhancer and promoter sequence embedding features seperately
 * Identify the true enhancer-promoter interactions from other possible interactions within a topologically associating domain (TAD)
-
+</br>
+![](https://github.com/wanwenzeng/ep2vec/workflow.pdf) 
 
 
 ##  Traing Data
