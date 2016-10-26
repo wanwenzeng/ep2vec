@@ -28,8 +28,9 @@ and you can get the AUC scores and F1 scores of 10-fold cross-validation. More d
 
 <br/>
 The F1 scores of EP2vec and TargetFinder:
-|-------------|-------------|-----------------|------------------|-------------------|
+
 |cell lines   |EP2vec(E/P)  |TargetFinder(E/P)|TargetFinder(EE/P)|TargetFinder(E/P/W)|
+|-------------|-------------|-----------------|------------------|-------------------|
 |K562         |0.88         |0.61             |0.81              |0.85               |
 |GM12878      |0.86         |0.48             |0.78              |0.83               |
 |HUVEC        |0.87         |0.59             |0.81              |0.84               |
