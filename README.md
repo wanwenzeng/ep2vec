@@ -9,8 +9,8 @@ EP2vec uses the same training data as TargetFinder, where interacting enhancer-p
 
 # Model Training
 
-Before training, you need to find out which cell line you are interested in. For example, if you want to find out the result of EP2vec of K562, move the ep2vec.py into paper/targetfinder/K562/output-eep and simply run 
-    ```python ep2vec.py```
+Before training, you need to find out which cell line you are interested in. For example, if you want to find out the result of EP2vec of K562, move the ep2vec.py into paper/targetfinder/K562/output-eep and simply run</br>
+    ```python ep2vec.py```</br>
 and you can get the AUC scores and F1 scores of 10-fold cross-validation.
 
 
