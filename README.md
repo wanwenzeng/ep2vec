@@ -24,6 +24,15 @@ python ep2vec.py 6 1 100
 </br>
 and you can get the AUC scores and F1 scores of 10-fold cross-validation. More detailed of the source code can be found in ep2vec.py.</br>
 
+## Result
+
+|cell lines/F1|EP2vec(E/P)  |TargetFinder(E/P)|TargetFinder(EE/P)|TargetFinder(E/P/W)|
+|-------------|-------------|-----------------|------------------|-------------------|
+|[CSDN]|
+|[知 乎]|
+|[微 博]|
+
+
 ## Dependency
 
 </br>EP2vec requires:
