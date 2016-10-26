@@ -9,9 +9,9 @@
 
 # Model Training
 
-</br>Before training, you need to find out which cell line you are interested in. For example, if you want to find out the result of EP2vec of K562, move the ep2vec.py into paper/targetfinder/K562/output-eep and simply run</br>
+</br>Before training, you need to find out which cell line you are interested in. For example, if you want to find out the result of EP2vec of K562, move the ep2vec.py into paper/targetfinder/K562/output-eep. ep2vec.py accepts 3 parameters, the length of k-mer, the length of stride, the the dimension of embedding vector. If you want to get the result of 6-mer with stride 1 and embedding dimension 100, simply run</br>
 ```
-python ep2vec.py
+python ep2vec.py 6 1 100
 ```
 </br>
 and you can get the AUC scores and F1 scores of 10-fold cross-validation.</br>
