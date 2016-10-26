@@ -1,6 +1,13 @@
 #  EP2vec
 
-</br>EP2vec is computational framework to predict enhancer-promoter interactions by extracting “sequence embedding features”, defined as fixed-length vector representations learned from variable-length sequences, via a deep learning method in natural language processing named Paragraph Vector. (EP2vec: a deep learning approach for extracting sequence embedding features to predict enhancer-promoter interactions)</br>
+</br>EP2vec is computational framework to predict enhancer-promoter interactions by extracting “sequence embedding features”, defined as fixed-length vector representations learned from variable-length sequences, via a deep learning method in natural language processing named Paragraph Vector. In "EP2vec: a deep learning approach for extracting sequence embedding features to predict enhancer-promoter interactions", we</br>
+
+* Extract the fasta files from bed files
+* Split the sequence into k-mer words
+* Generate training pairs from TargetFinder
+* Use Paragraph Vector to train enhancer and promoter sequence embedding features seperately
+* Identify the true enhancer-promoter interactions from other possible interactions within a topologically associating domain (TAD)
+
 
 
 ##  Traing Data
