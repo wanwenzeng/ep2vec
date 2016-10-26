@@ -8,7 +8,7 @@
 * Use Paragraph Vector to train enhancer and promoter sequence embedding features seperately
 * Identify the true enhancer-promoter interactions from other possible interactions within a topologically associating domain (TAD)
 </br>
-![](https://github.com/wanwenzeng/ep2vec/workflow.pdf) 
+![](https://github.com/wanwenzeng/ep2vec/raw/master/workflow.pdf) 
 
 
 ##  Traing Data
