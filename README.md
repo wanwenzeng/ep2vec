@@ -9,7 +9,7 @@
 * Identify the true enhancer-promoter interactions from other possible interactions within a topologically associating domain (TAD)
 </br>
 
-![Alt Text](http://github.com/wanwenzeng/ep2vec/raw/master/fig1.pdf)
+![Alt Text](http://github.com/wanwenzeng/ep2vec/raw/master/workflow.jpg)
 
 
 ##  Training Data
