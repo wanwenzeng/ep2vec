@@ -9,7 +9,7 @@
 * Identify the true enhancer-promoter interactions from other possible interactions within a topologically associating domain (TAD)
 </br>
 
-![image](http://github.com/wanwenzeng/ep2vec/raw/master/workflow.jpg)
+![image](http://github.com/wanwenzeng/ep2vec/raw/master/jpg/workflow.jpg)
 
 <br>The two-stage workflow of EP2vec. Stage 1 of EP2vec is unsupervised feature extraction which transforms enhancer sequences and promoter sequences in a cell line into sequence embedding features separately. Given a set of all known enhancers or promoters in a cell line, we first split all the sequences into k-mer words with stride s=1 and assign a unique ID to each of them. Regarding the preprocessed sequences as sentences, we embed each sentence to a vector by Paragraph Vector. Concretely, we use vectors of words in a context with the sentence vector to predict the next word in the context using softmax classifier. After training converges, we get embedding vectors for words and all sentences, where the vectors for sentences are exactly the sequence embedding features that we need. Note that in sentence ID, SEQUENCE is a placeholder for ENHANCER or PROMOTER, and  is the total number of enhancers or promoters in a cell line. Stage 2 is supervised learning for predicting EPIs. Given a pair of sequences, namely an enhancer sequence and a promoter sequence, we represent the two sequences using the pre-trained vectors and then concatenate them to obtain the feature representation. Lastly, we train a Gradient Boosted Gradient Trees classifier to predict whether this pair is a true EPI.<br>
 
