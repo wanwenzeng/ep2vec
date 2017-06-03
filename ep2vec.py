@@ -22,13 +22,14 @@ negative_num  = 0
 kmer = int(sys.argv[1]) # the length of k-mer
 swin = int(sys.argv[2]) # the length of stride
 vlen = int(sys.argv[3]) # the dimension of embedding vector
+cl   = sys.argv[4]      # the interested cell line
 
-print "k:",kmer,"stride:",swin,"embedding vector size:",vlen
+print "k:",kmer,"stride:",swin,"embedding vector size:",vlen, "cell line", cl
 
 #bed2sent: convert the enhancers.bed and promoters.bed to kmer sentense
 #bed format: chr start end name
 def bed2sent(filename,k,win):
-	if os.path.isfile(filename+'.fa') == False:
+	if os.path.isfile('/data/'+cl+'/'+filename+'.fa') == False:
 		os.system("bedtools getfasta -fi /home/openness/common/igenomes/Homo_sapiens/UCSC/hg19/Sequence/WholeGenomeFasta/genome.fa -bed "+filename+".bed -fo "+filename+".fa")
 		time.sleep(30)	
 	fin   = open(filename+'.fa','r')
