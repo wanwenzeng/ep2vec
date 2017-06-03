@@ -9,7 +9,11 @@
 * Identify the true enhancer-promoter interactions from other possible interactions within a topologically associating domain (TAD)
 </br>
 
-![Alt Text](http://github.com/wanwenzeng/ep2vec/raw/master/workflow.jpg)
+![image](http://github.com/wanwenzeng/ep2vec/raw/master/workflow.jpg)
+
+<br>The two-stage workflow of EP2vec. Stage 1 of EP2vec is unsupervised feature extraction which transforms enhancer sequences and promoter sequences in a cell line into sequence embedding features separately. Given a set of all known enhancers or promoters in a cell line, we first split all the sequences into k-mer words with stride s=1 and assign a unique ID to each of them. Regarding the preprocessed sequences as sentences, we embed each sentence to a vector by Paragraph Vector. Concretely, we use vectors of words in a context with the sentence vector to predict the next word in the context using softmax classifier. After training converges, we get embedding vectors for words and all sentences, where the vectors for sentences are exactly the sequence embedding features that we need. Note that in sentence ID, SEQUENCE is a placeholder for ENHANCER or PROMOTER, and  is the total number of enhancers or promoters in a cell line. Stage 2 is supervised learning for predicting EPIs. Given a pair of sequences, namely an enhancer sequence and a promoter sequence, we represent the two sequences using the pre-trained vectors and then concatenate them to obtain the feature representation. Lastly, we train a Gradient Boosted Gradient Trees classifier to predict whether this pair is a true EPI.<br>
+
+
 
 
 ##  Training Data
@@ -24,20 +28,6 @@ python ep2vec.py 6 1 100
 ```
 </br>
 and you can get the AUC scores and F1 scores of 10-fold cross-validation. More detailed of the source code can be found in ep2vec.py.</br>
-
-## Result
-
-<br/>
-The F1 scores of EP2vec and TargetFinder:
-
-|cell lines   |EP2vec(E/P)  |TargetFinder(E/P)|TargetFinder(EE/P)|TargetFinder(E/P/W)|
-|-------------|-------------|-----------------|------------------|-------------------|
-|K562         |0.88         |0.61             |0.81              |0.85               |
-|GM12878      |0.86         |0.48             |0.78              |0.83               |
-|HUVEC        |0.87         |0.59             |0.81              |0.84               |
-|HeLa-S3      |0.87         |0.48             |0.77              |0.71               |
-|IMR90        |0.91         |0.61             |0.87              |0.83               |
-|NHEK         |0.92         |0.59             |0.90              |0.83               |
 
 
 ## Dependency
