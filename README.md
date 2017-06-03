@@ -8,10 +8,10 @@
 * Use Paragraph Vector to train enhancer and promoter sequence embedding features seperately
 * Identify the true enhancer-promoter interactions from other possible interactions within a topologically associating domain (TAD)
 </br>
-![](https://github.com/wanwenzeng/ep2vec/raw/master/workflow.jpg) 
 
 
-##  Traing Data
+
+##  Training Data
 
 </br>EP2vec uses the same training data as TargetFinder, where interacting enhancer-promoter pairs are annotated using high-resolution genome-wide Hi-C data (Rao et al., 2014). Labeled training datasets used in the TargetFinder are available in https://github.com/shwhalen/targetfinder.git. Specifically, in targetfinder/paper/targetfinder directory, each cell line has its own subdirectory. Furthermore, each cell line has 3 training datasets with their own subdirectories: one with features generated for the enhancer and promoter only (EP), one for promoters and extended enhancers (EEP), and one for promoters, enhancers, and the window between (EPW). For example, paper/targetfinder/HeLa-S3/output-eep contains training data for the HeLa-S3 cell line using promoter and extended enhancer features. More detailed information of the directory can be found in https://github.com/shwhalen/targetfinder.git.</br>
 
