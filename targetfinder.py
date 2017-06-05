@@ -7,8 +7,20 @@ from sklearn import metrics
 from sklearn.cross_validation import StratifiedKFold, cross_val_score
 import sys
 
+cellline = sys.argv[1]
+fin  = open(cellline+'train.csv','r')
+lines = fin.readlines()
+row   = len(lines) - 1
+col   = len(lines[1].split(','))-19
 
+arrays = numpy.zeros((row,col))
+labels = numpy.zeros(row)
 
+for i in range(row):
+        data = lines[i+1].strip().split(',')
+        arrays[i] = data[18:]
+        label[i]  = data[7]
+               
 
 cv = StratifiedKFold(y = labels, n_folds = 10, shuffle = True, random_state = 0)
 f1        = []
