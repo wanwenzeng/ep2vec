@@ -17,6 +17,15 @@
 
 </br>EP2vec uses the same training data as TargetFinder, where interacting enhancer-promoter pairs are annotated using high-resolution genome-wide Hi-C data (Rao et al., 2014). Labeled training datasets used in the TargetFinder are available in https://github.com/shwhalen/targetfinder.git. We downsample the training sets to ratio 1:1 in all cell types. The K562train.csv, GM12878train.csv, NHEKtrain.csv, IMR90train.csv HUVECtrain.csv and HeLa-S3train.csv are the downsampled training sets. Besides, we need all known enhancers and promoters in a cell line to perform unsupervised feature extraction. We use the enhancers and promoters and TargetFinder in https://github.com/shwhalen/targetfinder.git. The following table show details of each cell line dataset. The enhancers (or promoters) column indicates the number of all known active enhancers (or promoters) for each cell line, which are used for unsupervised feature learning for enhancer (or promoter) sequences.</br>
 
+| Dataset | enhancers | promoters | true EPIs | false EPIs|
+| ------| ------ | ------ |------ | ------ |
+| K562 |82806 | 8196| 1977| 1975|
+| IMR90 |108996 | 5253| 1254| 1250|
+| GM12878 | 100036| 8453| 2113|2110 |
+| HUVEC |65358 |8180 |1524 | 1520|
+|HeLa-S3 |103460 |7794 |1740 |1740 |
+|NHEK| 144302| 5254| 1291| 1280|
+
 ## Model Training
 
 </br>ep2vec.py accepts 4 parameters, the length of k-mer, the length of stride, the dimension of embedding vector and the interested cell line. If you want to get the result of 6-mer with stride 1 and embedding dimension 100 in K562, simply run</br>
