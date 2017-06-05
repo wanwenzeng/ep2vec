@@ -35,6 +35,8 @@ python ep2vec.py 6 1 100 K562
 </br>
 and you can get the auROC scores, F1 scores and auPRC scores of 10-fold cross-validation. More detailed of the source code can be found in ep2vec.py.</br>
 
+## Methods Comparison
+</br>We compared the performance of four methods, namely EP2vec, TargetFinder, gkmSVM, and SPEID, in different datasets, respectively. We rewrite the source code of TargetFinder and SPEID according to their papers in targetfinder.py and speid.py. On the whole, the F1 scores for six cell line datasets of the above four methods range from 0.867~0.933, 0.844~0.922, 0.731~0.822, 0.809~0.900, respectively.</br>
 
 ## Dependency
 
