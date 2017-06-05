@@ -29,7 +29,7 @@ print "k:",kmer,"stride:",swin,"embedding vector size:",vlen, "cell line", cl
 #bed2sent: convert the enhancers.bed and promoters.bed to kmer sentense
 #bed format: chr start end name
 def bed2sent(filename,k,win):
-	if os.path.isfile('/data/'+cl+'/'+filename+'.fa') == False:
+	if os.path.isfile(cl+'/'+filename+'.fa') == False:
 		os.system("bedtools getfasta -fi /home/openness/common/igenomes/Homo_sapiens/UCSC/hg19/Sequence/WholeGenomeFasta/genome.fa -bed "+filename+".bed -fo "+filename+".fa")
 		time.sleep(30)	
 	fin   = open(filename+'.fa','r')
@@ -61,7 +61,7 @@ def generateTraining():
 		data = line.strip().split()
 		promoters.append(data[3])
 		promoters_num = promoters_num + 1
-	fin3 = open('pairs.csv','r')
+	fin3 = open(cl+'train.csv','r')
 	fout = open('training.txt','w')
 	for line in fin3:
 		if line[0] == 'b':
@@ -121,20 +121,14 @@ def doc2vec(name,k,vlen):
 	model.save(name+'_'+str(k)+'_'+str(swin)+'_'+str(vlen)+'.d2v')
 
 #train the model and print the result
-def train(k,balance,vlen):
+def train(k,vlen):
 	global enhancers_num,promoters_num,positive_num,negative_num
 	enhancer_model = Doc2Vec.load('enhancers_'+str(k)+'_'+str(swin)+'_'+str(vlen)+'.d2v')
 	promoter_model = Doc2Vec.load('promoters_'+str(k)+'_'+str(swin)+'_'+str(vlen)+'.d2v')
-	if balance == 1:
-		arrays = numpy.zeros((positive_num*2, vlen*2))
-		labels = numpy.zeros(positive_num*2)
-		num    = positive_num*2
-		estimator = GradientBoostingClassifier(n_estimators = 8000, learning_rate = 0.001, max_depth = 25, max_features = 'log2', random_state = 0)
-	else:	
-		arrays = numpy.zeros((positive_num+negative_num, vlen*2))
-                labels = numpy.zeros(positive_num+negative_num)
-		num    = positive_num+negative_num
-		estimator = GradientBoostingClassifier(n_estimators = 4000, learning_rate = 0.1, max_depth = 5, max_features = 'log2', random_state = 0)
+	arrays = numpy.zeros((positive_num+negative_num, vlen*2))
+        labels = numpy.zeros(positive_num+negative_num)
+	num    = positive_num+negative_num
+	estimator = GradientBoostingClassifier(n_estimators = 4000, learning_rate = 0.001, max_depth = 25, max_features = 'log2', random_state = 0)
 	fin = open('training.txt','r')
 	i = 0
 	for line in fin:
@@ -148,14 +142,15 @@ def train(k,balance,vlen):
 		arrays[i] = numpy.column_stack((enhancer_vec,promoter_vec))
     		labels[i] = int(data[2])
 		i = i + 1
-		if i >=num:
-			break
 
 	cv = StratifiedKFold(y = labels, n_folds = 10, shuffle = True, random_state = 0)
 	scores = cross_val_score(estimator, arrays, labels, scoring = 'f1', cv = cv, n_jobs = -1)
 	print('f1:')
 	print('{:2f} {:2f}'.format(scores.mean(), scores.std()))
 	scores = cross_val_score(estimator, arrays, labels, scoring = 'roc_auc', cv = cv, n_jobs = -1)
+	print('auc:')
+	print('{:2f} {:2f}'.format(scores.mean(), scores.std()))
+	scores = cross_val_score(estimator, arrays, labels, scoring = 'average_precision', cv = cv, n_jobs = -1)
 	print('auc:')
 	print('{:2f} {:2f}'.format(scores.mean(), scores.std()))
 
@@ -167,7 +162,5 @@ print 'generate training set done!'
 doc2vec("promoters",kmer,vlen)
 doc2vec("enhancers",kmer,vlen)
 print 'doc2vec done!'
-print 'balanced:'
-train(kmer,1,vlen)
-#print 'unbalanced:'
-#train(kmer,0,vlen)
+train(kmer,vlen)
+
